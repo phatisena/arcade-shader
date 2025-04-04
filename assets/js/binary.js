@@ -1,4 +1,4 @@
-// meta={"simUrl":"https://trg-arcade.userpxt.io/v2.0.46/---simulator","cdnUrl":"https://cdn.makecode.com","version":"0.0.2","target":"arcade","targetVersion":"2.0.46","repo":"phatisena/arcade-shader"}
+// meta={"simUrl":"https://trg-arcade.userpxt.io/v2.0.46/---simulator","cdnUrl":"https://cdn.makecode.com","version":"0.1.0","target":"arcade","targetVersion":"2.0.46","repo":"phatisena/arcade-shader"}
 // total=1642268 new=28.88% cached=66.81% other=4.31%
 (function (ectx) {
 'use strict';
@@ -428,7 +428,7 @@ const pxsim_pxtrt = pxsim.pxtrt;
 const pxsim_numops = pxsim.numops;
 
 
-function _main___P37122(s) {
+function _main___P37133(s) {
 let r0 = s.r0, step = s.pc;
 s.pc = -1;
 
@@ -843,13 +843,13 @@ switch (step) {
     return leave(s, r0)
   default: oops()
 } } }
-_main___P37122.info = {"start":0,"length":0,"line":0,"column":0,"endLine":0,"endColumn":0,"fileName":"main.ts","functionName":"<main>","argumentNames":[]}
-_main___P37122.continuations = [  ]
+_main___P37133.info = {"start":0,"length":0,"line":0,"column":0,"endLine":0,"endColumn":0,"fileName":"main.ts","functionName":"<main>","argumentNames":[]}
+_main___P37133.continuations = [  ]
 
-function _main___P37122_mk(s) {
+function _main___P37133_mk(s) {
     checkStack(s.depth);
     return {
-        parent: s, fn: _main___P37122, depth: s.depth + 1,
+        parent: s, fn: _main___P37133, depth: s.depth + 1,
         pc: 0, retval: undefined, r0: undefined, overwrittenPC: false, lambdaArgs: null,
   tmp_0: undefined,
   tmp_1: undefined,
@@ -42079,5 +42079,5 @@ const tiles_Location__C19811_VT = mkVTable({
 
 const breakpoints = setupDebugger(1, ["Shader___36650","shade04___36653","shade03___36657","shade02___36661","shade01___36665","shade1___36669","shade2___36673","shade3___36677","shade4___36681"])
 
-return _main___P37122
+return _main___P37133
 })

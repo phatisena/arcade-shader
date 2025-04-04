@@ -4,6 +4,10 @@ namespace SpriteKind {
 
 //% color="#9e6eb8" icon="\uf0eb"
 namespace shader {
+    const shade04 = (hex`FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF`)
+    const shade03 = (hex`F0F3F0F0F0F3F0F3F0F3F0F0F0F0F0F0`)
+    const shade02 = (hex`F0F4F0F3F3F1F3F7F0F7F3F0F0F3F0F0`)
+    const shade01 = (hex`F0F2F5F4F1FCF7F9F3F9F4F5F0F4F5F0`)
     const shade1 = (hex`0F0D0A0B0E0408060C060B0C0F0B0C0F`)
     const shade2 = (hex`0F0B0F0C0C0E0C080F080C0F0F0C0F0F`)
     const shade3 = (hex`0F0C0F0F0F0C0F0C0F0C0F0F0F0F0F0F`)
@@ -12,14 +16,22 @@ namespace shader {
     let maskRowsBuffer: Buffer;
 
     export enum ShadeLevel {
-        //% block="one"
-        One = 1,
-        //% block="two"
-        Two = 2,
-        //% block="three"
-        Three = 3,
-        //% block="four"
-        Four = 4
+        //% block="dark one"
+        Dark1 = 1,
+        //% block="dark two"
+        Dark2 = 2,
+        //% block="dark three"
+        Dark3 = 3,
+        //% block="dark four"
+        Dark4 = 4,
+        //% block="light one"
+        Light1 = 5,
+        //% block="light two"
+        Light2 = 6,
+        //% block="light three"
+        Light3 = 7,
+        //% block="light four"
+        Light4 = 8,
     }
 
     class ShaderSprite extends Sprite {
@@ -30,6 +42,11 @@ namespace shader {
             super(image);
             this.shadePalette = shadePalette;
             this.shadeRectangle = true;
+        }
+
+        setShadeImage(image: Image = null, shadePalette: Buffer = null) {
+            if (image) this.setImage(image);
+            if (shadePalette) this.shadePalette = shadePalette
         }
 
         __drawCore(camera: scene.Camera) {
@@ -116,6 +133,10 @@ namespace shader {
             case 2: return shade2;
             case 3: return shade3;
             case 4: return shade4;
+            case 5: return shade01;
+            case 6: return shade02;
+            case 7: return shade03;
+            case 8: return shade04;
         }
         return shade1
     }
@@ -125,6 +146,7 @@ namespace shader {
     //% shadeLevel.shadow=shader_shadelevel
     //% width.defl=16
     //% height.defl=16
+    //% blockSetVariable=myShader
     //% weight=90
     export function createRectangularShaderSprite(width: number, height: number, shadeLevel: number): Sprite {
         const scene = game.currentScene();
@@ -146,6 +168,7 @@ namespace shader {
     //% block="create image shader with $image shade $shadeLevel"
     //% image.shadow=screen_image_picker
     //% shadeLevel.shadow=shader_shadelevel
+    //% blockSetVariable=myShader
     //% weight=100
     export function createImageShaderSprite(image: Image, shadeLevel: number): Sprite {
         const scene = game.currentScene();
@@ -162,10 +185,28 @@ namespace shader {
         return sprite
     }
 
+    //% blockId=shader_setShadeImage
+    //% block=" $spr set shade image to $img=screen_image_picker"
+    //% spr.shadow=variables_get spr.defl=myShader
+    //% weight=80
+    export function setImage(spr: ShaderSprite, img: Image) {
+        spr.setShadeImage(img);
+    }
+
+    //% blockId=shader_setShadeLevel
+    //% block=" $spr set shade level to $shadeLevel=shader_shadelevel"
+    //% spr.shadow=variables_get spr.defl=myShader
+    //% weight=70
+    export function setShade(spr: ShaderSprite, shadeLevel: number) {
+        let palette: Buffer;
+        palette = shadeitem(shadeLevel)
+        spr.setShadeImage(null,palette);
+    }
+
     //% blockId=shader_shadelevel
     //% block="$level"
     //% shim=TD_ID
-    //% weight=80
+    //% weight=50
     export function _shadeLevel(level: ShadeLevel): number {
         return level;
     }

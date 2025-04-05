@@ -158,7 +158,7 @@ namespace shader {
 
         
         onPaletteChanged() {
-            this.shadePalette = this.data["__palette__"] as Buffer;
+            if (this.shadePalette !== this.data["__palette__"]) this.shadePalette = this.data["__palette__"] as Buffer;
         }
 
         __drawCore(camera: scene.Camera) {

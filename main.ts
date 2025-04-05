@@ -4,10 +4,10 @@ namespace SpriteKind {
 
 //% color="#9e6eb8" icon="\uf0eb"
 namespace shader {
-    const shade04 = (hex`E0E0E0E0E0E0E0E0E0E0E0E0E0E0E0E0`) // very light
-    const shade03 = (hex`C0C3C0C0C3C0C3C0C3C0C0C0C0C0C0C0`) // medium light
-    const shade02 = (hex`A0A4A0A3A3A1A3A7A0A7A3A0A0A3A0A0`) // low light
-    const shade01 = (hex`8082858481BCB7B9A3B9B4B585B485B0`) // a little light
+    const shade04 = (hex`00010101010101010101010101010101`) // very light
+    const shade03 = (hex`0F01050101010101010105010D01010D`) // medium light
+    const shade02 = (hex`0F010301050109010901030D0301050B`) // low light
+    const shade01 = (hex`0F0104050301070906010B030B01040C`) // a little light
     const shade1 = (hex`0F0D0A0B0E0408060C060B0C0F0B0C0F`)  // a little dark
     const shade2 = (hex`0F0B0F0C0C0E0C080F080C0F0F0C0F0F`)  // low dark
     const shade3 = (hex`0F0C0F0F0F0C0F0C0F0C0F0F0F0F0F0F`)  // medium dark

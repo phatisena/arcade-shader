@@ -1,5 +1,6 @@
 namespace SpriteKind {
-    export const Shader = SpriteKind.create()
+    //% isKind
+    export const Shader = SpriteKind.create();
 }
 
 //% color="#9e6eb8" icon="\uf0eb"
@@ -154,7 +155,7 @@ namespace shader {
 
         
         shadeUpdate() {
-            setInterval( function () { if (this.shadePalette !== this.data["__palette__"]) this.shadePalette = this.data["__palette__"]; }, 1)
+            setImmediate( function () { if (this.shadePalette !== this.data["__palette__"]) this.shadePalette = this.data["__palette__"]; });
         }
 
         __drawCore(camera: scene.Camera) {

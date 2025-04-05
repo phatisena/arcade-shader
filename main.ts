@@ -155,7 +155,7 @@ namespace shader {
 
         
         shadeUpdate() {
-            setImmediate( function () { if (this.shadePalette !== this.data["__palette__"]) this.shadePalette = this.data["__palette__"]; });
+            setInterval( function () { if (this.shadePalette !== this.data["__palette__"]) this.shadePalette = this.data["__palette__"]; }, 1);
         }
 
         __drawCore(camera: scene.Camera) {

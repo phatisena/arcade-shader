@@ -5,14 +5,15 @@ namespace SpriteKind {
 
 //% color="#9e6eb8" icon="\uf0eb"
 namespace shader {
-    const shade04 = (hex`00010101010101010101010101010101`) // very light
-    const shade03 = (hex`0F01050101010101010101010D01010D`) // medium light
-    const shade02 = (hex`0F010301050109010901050D0301050B`) // low light
-    const shade01 = (hex`0F01040503010709060103030B01040C`) // a little light
-    const shade1 = (hex`0F0D0A0B0E0408060C060B0C0F0B0C0F`)  // a little dark
-    const shade2 = (hex`0F0B0C0C0C0E0C080F080C0F0F0C0F0F`)  // low dark
-    const shade3 = (hex`0F0C0F0F0F0C0F0C0F0C0F0F0F0F0F0F`)  // medium dark
-    const shade4 = (hex`00000000000000000000000000000000`)  // very dark
+    const shadeBlank = (hex`00000000000000000000000000000000`)  // blank shade
+    const shadeLight4 = (hex`0F010101010101010101010101010101`) // very light
+    const shadeLight3 = (hex`0F01050101010101010101010D01010D`) // medium light
+    const shadeLight2 = (hex`0F010301050109010901050D0301050B`) // low light
+    const shadeLight1 = (hex`0F01040503010709060103030B01040C`) // a little light
+    const shadeDark1 = (hex`0F0D0A0B0E0408060C060B0C0F0B0C0F`)  // a little dark
+    const shadeDark2 = (hex`0F0B0C0C0C0E0C080F080C0F0F0C0F0F`)  // low dark
+    const shadeDark3 = (hex`0F0C0F0F0F0C0F0C0F0C0F0F0F0F0F0F`)  // medium dark
+    const shadeDark4 = (hex`0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F`)  // very dark
     let screenRowsBuffer: Buffer;
     let maskRowsBuffer: Buffer;
 
@@ -67,16 +68,16 @@ namespace shader {
 
     function shadeitem(shadeLevel: number): Buffer {
         switch (shadeLevel) {
-            case 1: return shade1;
-            case 2: return shade2;
-            case 3: return shade3;
-            case 4: return shade4;
-            case -1: return shade01;
-            case -2: return shade02;
-            case -3: return shade03;
-            case -4: return shade04;
+            case 1: return shadeDark1;
+            case 2: return shadeDark2;
+            case 3: return shadeDark3;
+            case 4: return shadeDark4;
+            case -1: return shadeLight1;
+            case -2: return shadeLight2;
+            case -3: return shadeLight3;
+            case -4: return shadeLight4;
         }
-        return shade1
+        return shadeBlank
     }
 
     //% blockId=shader_createRectangularShaderSprite
@@ -133,6 +134,8 @@ namespace shader {
         spr.data["__palette__"] = palette as Buffer
         if (spr instanceof ShaderSprite) {
             (spr as ShaderSprite).onPaletteChanged(); // Update palette when set
+        } else {
+            throw(`this sprite is not an shader sprite ${spr}`);
         }
     }
 
@@ -172,8 +175,7 @@ namespace shader {
 
             if (this.shadeRectangle) {
                 screen.mapRect(l, t, this.image.width, this.image.height, this.shadePalette);
-            }
-            else {
+            } else {
                 shadeImage(screen, l, t, this.image, this.shadePalette);
             }
 

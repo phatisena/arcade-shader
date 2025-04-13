@@ -23,21 +23,21 @@ namespace shader {
     let maskRowsBuffer: Buffer;
 
     export enum ShadeLevel {
-        //% block="dark 20%"
+        //% block="dark   20%"
         Dark20 = 0,
-        //% block="dark 40%"
+        //% block="dark   40%"
         Dark40 = 1,
-        //% block="dark 60%"
+        //% block="dark   60%"
         Dark60 = 2,
-        //% block="dark 80%"
+        //% block="dark   80%"
         Dark80 = 3,
-        //% block="dark 100%"
+        //% block="dark  100%"
         Dark100 = 4,
-        //% block="light 25%"
+        //% block="light  25%"
         Light25 = -1,
-        //% block="light 50%"
+        //% block="light  50%"
         Light50 = -2,
-        //% block="light 75%"
+        //% block="light  75%"
         Light75 = -3,
         //% block="light 100%"
         Light100 = -4,

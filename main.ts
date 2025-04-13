@@ -6,14 +6,14 @@ namespace SpriteKind {
 //% color="#9e6eb8" icon="\uf0eb"
 namespace shader {
     const shadeBlank = (hex`00000000000000000000000000000000`)  // blank shade
-    const shadeLight4 = (hex`0F010101010101010101010101010101`) // very light
-    const shadeLight3 = (hex`0F01050101010101010101010D01010D`) // medium light
-    const shadeLight2 = (hex`0F010301050109010901050D0301050B`) // low light
-    const shadeLight1 = (hex`0F01040503010709060103030B01040C`) // a little light
-    const shadeDark1 = (hex`0F0D0A0B0E0408060C060B0C0F0B0C0F`)  // a little dark
-    const shadeDark2 = (hex`0F0B0C0C0C0E0C080F080C0F0F0C0F0F`)  // low dark
-    const shadeDark3 = (hex`0F0C0F0F0F0C0F0C0F0C0F0F0F0F0F0F`)  // medium dark
-    const shadeDark4 = (hex`0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F0F`)  // very dark
+    const shadeLight4 = (hex`00010101010101010101010101010101`) // very light
+    const shadeLight3 = (hex`0001050101010101010101010D01010D`) // medium light
+    const shadeLight2 = (hex`00010301050109010901050D0301050B`) // low light
+    const shadeLight1 = (hex`0001040503010709060103030B01040C`) // a little light
+    const shadeDark1 = (hex`000D0A0B0E0408060C060B0C0F0B0C0F`)  // a little dark
+    const shadeDark2 = (hex`000B0C0C0C0E0C080F080C0F0F0C0F0F`)  // low dark
+    const shadeDark3 = (hex`000C0F0F0F0C0F0C0F0C0F0F0F0F0F0F`)  // medium dark
+    const shadeDark4 = (hex`000F0F0F0F0F0F0F0F0F0F0F0F0F0F0F`)  // very dark
     let screenRowsBuffer: Buffer;
     let maskRowsBuffer: Buffer;
 
@@ -80,6 +80,12 @@ namespace shader {
         return shadeBlank
     }
 
+    /**
+     * create shader sprite as rectangle image.
+     * @param width of ractangle image
+     * @param height of ractangle image 
+     * @param shade level as enum or number 
+     */
     //% blockId=shader_createRectangularShaderSprite
     //% block="create rectangular shader with width $width height $height shade $shadeLevel"
     //% shadeLevel.shadow=shader_shadelevel
@@ -103,6 +109,11 @@ namespace shader {
         return sprite
     }
 
+    /**
+     * create shader sprite as your image.
+     * @param image to render 
+     * @param shade level as enum or number
+     */
     //% blockId=shader_createImageShaderSprite
     //% block="create image shader with $image shade $shadeLevel"
     //% image.shadow=screen_image_picker
@@ -124,6 +135,11 @@ namespace shader {
         return sprite
     }
 
+    /**
+     * setting shade level as enum or number for shader sprite.
+     * @param current shader sprite not original sprite 
+     * @param new shade level as enum or number
+     */
     //% blockId=shader_setShadeLevel
     //% block=" $spr set shade level to $shadeLevel=shader_shadelevel"
     //% spr.shadow=variables_get spr.defl=myShader
@@ -139,6 +155,11 @@ namespace shader {
         }
     }
 
+    /**
+     * enum block shadow for shade level 
+     * but not used it.
+     */
+    //% blockHidden
     //% blockId=shader_shadelevel
     //% block="$level"
     //% shim=TD_ID
@@ -179,7 +200,6 @@ namespace shader {
                 shadeImage(screen, l, t, this.image, this.shadePalette);
             }
 
-
             if (this.flags & SpriteFlag.ShowPhysics) {
                 const font = image.font5;
                 const margin = 2;
@@ -207,6 +227,7 @@ namespace shader {
                     1
                 );
             }
+            
         }
     }
 

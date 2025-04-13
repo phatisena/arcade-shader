@@ -5,41 +5,42 @@ namespace SpriteKind {
 
 //% color="#9e6eb8" icon="\uf0eb"
 namespace shader {
-    /* blank shade */
-    const shadeNull = (hex``)
-    const shadeDark100 = (hex`00000000000000000000000000000000`)  /*  blank shade   */
-    /* light shade */
+                        /* blank shade */
+    const shadeNull     = (hex``)                                 /*   null shade   */
+    const shadeDark100  = (hex`00000000000000000000000000000000`) /*  blank shade   */
+                        /* light shade */
     const shadeLight100 = (hex`01010101010101010101010101010101`) /*   very light   */
-    const shadeLight75 = (hex`0D01050101010101010101010D01010D`) /*  medium light  */
-    const shadeLight50 = (hex`0B010301050109010901050D0301050B`) /*   low light    */
-    const shadeLight25 = (hex`0C01040503010709060103030B01040C`) /* a little light */
-    /* dark shade */
-    const shadeDark20 = (hex`000D0A0B0E0408060C060B0C0F0B0C0F`)  /* a little dark  */
-    const shadeDark40 = (hex`000B0C0C0C0E0C080F080C0F0F0C0F0F`)  /*   low dark     */
-    const shadeDark60 = (hex`000C0F0F0F0C0F0C0F0C0F0F0F0F0F0F`)  /*  medium dark   */
-    const shadeDark80 = (hex`000F0F0F0F0F0F0F0F0F0F0F0F0F0F0F`)  /*   very dark    */
+    const shadeLight75  = (hex`0D01050101010101010101010D01010D`) /*  medium light  */
+    const shadeLight50  = (hex`0B010301050109010901050D0301050B`) /*   low light    */
+    const shadeLight25  = (hex`0C01040503010709060103030B01040C`) /* a little light */
+                        /* dark shade  */
+    const shadeDark20   = (hex`000D0A0B0E0408060C060B0C0F0B0C0F`) /* a little dark  */
+    const shadeDark40   = (hex`000B0C0C0C0E0C080F080C0F0F0C0F0F`) /*    low dark    */
+    const shadeDark60   = (hex`000C0F0F0F0C0F0C0F0C0F0F0F0F0F0F`) /*  medium dark   */
+    const shadeDark80   = (hex`000F0F0F0F0F0F0F0F0F0F0F0F0F0F0F`) /*   very dark    */
+    
     let screenRowsBuffer: Buffer;
     let maskRowsBuffer: Buffer;
 
     export enum ShadeLevel {
         //% block="dark 20%"
-        Dark20 = 0.2,
+        Dark20 = 0,
         //% block="dark 40%"
-        Dark40 = 0.4,
+        Dark40 = 1,
         //% block="dark 60%"
-        Dark60 = 0.6,
+        Dark60 = 2,
         //% block="dark 80%"
-        Dark80 = 0.8,
+        Dark80 = 3,
         //% block="dark 100%"
-        Dark100 = 1,
+        Dark100 = 4,
         //% block="light 25%"
-        Light25 = -0.25,
+        Light25 = -1,
         //% block="light 50%"
-        Light50 = -0.5,
+        Light50 = -2,
         //% block="light 75%"
-        Light75 = -0.75,
+        Light75 = -3,
         //% block="light 100%"
-        Light100 = -1,
+        Light100 = -4,
     }
 
     function shadeImage(target: Image, left: number, top: number, mask: Image, palette: Buffer) {
@@ -74,16 +75,17 @@ namespace shader {
 
     function shadeitem(shadeLevel: number): Buffer {
         switch (shadeLevel) {
-            case   0.2: return shadeDark20  ;
-            case   0.4: return shadeDark40  ;
-            case   0.6: return shadeDark60  ;
-            case   0.8: return shadeDark80  ;
-            case     1: return shadeDark100 ;
-            case -0.25: return shadeLight25 ;
-            case  -0.5: return shadeLight50 ;
-            case -0.75: return shadeLight75 ;
-            case    -1: return shadeLight100;
+            case  0: return shadeDark20  ;
+            case  1: return shadeDark40  ;
+            case  2: return shadeDark60  ;
+            case  3: return shadeDark80  ;
+            case  4: return shadeDark100 ;
+            case -1: return shadeLight25 ;
+            case -2: return shadeLight50 ;
+            case -3: return shadeLight75 ;
+            case -4: return shadeLight100;
         }
+        if (shadeLevel < 0) return shadeLight100
         return shadeDark100
     }
 

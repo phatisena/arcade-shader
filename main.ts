@@ -5,15 +5,18 @@ namespace SpriteKind {
 
 //% color="#9e6eb8" icon="\uf0eb"
 namespace shader {
-    const shadeBlank = (hex`00000000000000000000000000000000`)  // blank shade
-    const shadeLight4 = (hex`01010101010101010101010101010101`) // very light
-    const shadeLight3 = (hex`0D01050101010101010101010D01010D`) // medium light
-    const shadeLight2 = (hex`0B010301050109010901050D0301050B`) // low light
-    const shadeLight1 = (hex`0C01040503010709060103030B01040C`) // a little light
-    const shadeDark1 = (hex`000D0A0B0E0408060C060B0C0F0B0C0F`)  // a little dark
-    const shadeDark2 = (hex`000B0C0C0C0E0C080F080C0F0F0C0F0F`)  // low dark
-    const shadeDark3 = (hex`000C0F0F0F0C0F0C0F0C0F0F0F0F0F0F`)  // medium dark
-    const shadeDark4 = (hex`000F0F0F0F0F0F0F0F0F0F0F0F0F0F0F`)  // very dark
+    /* blank shade */
+    const shadeBlank = (hex`00000000000000000000000000000000`)  /*  blank shade   */
+    /* light shade */
+    const shadeLight4 = (hex`01010101010101010101010101010101`) /*   very light   */
+    const shadeLight3 = (hex`0D01050101010101010101010D01010D`) /*  medium light  */
+    const shadeLight2 = (hex`0B010301050109010901050D0301050B`) /*   low light    */
+    const shadeLight1 = (hex`0C01040503010709060103030B01040C`) /* a little light */
+    /* dark shade */
+    const shadeDark1 = (hex`000D0A0B0E0408060C060B0C0F0B0C0F`)  /* a little dark  */
+    const shadeDark2 = (hex`000B0C0C0C0E0C080F080C0F0F0C0F0F`)  /*   low dark     */
+    const shadeDark3 = (hex`000C0F0F0F0C0F0C0F0C0F0F0F0F0F0F`)  /*  medium dark   */
+    const shadeDark4 = (hex`00000000000000000000000000000000`)  /*   very dark    */
     let screenRowsBuffer: Buffer;
     let maskRowsBuffer: Buffer;
 
